@@ -1,0 +1,7 @@
+.resume-item-holder {
+    border: 1px solid #FFFFFF;
+}
+.resume-item-holder.editable.selected-resume-item, .resume-item-holder.editable:hover {
+    border: 1px solid #60d5ba;
+    border-radius: 8px;
+}

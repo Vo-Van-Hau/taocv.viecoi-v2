@@ -1,0 +1,11 @@
+.resume-footer-inner-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.resume-footer-inner-wrapper .powered-link {
+    text-align: start;
+}
+.resume-footer-inner-wrapper .powered-by {
+    text-align: end;
+}
