@@ -3,9 +3,14 @@ import {
     AppstoreAddOutlined, FormOutlined, BlockOutlined, FontColorsOutlined,
     ShareAltOutlined, DownloadOutlined 
 } from '@ant-design/icons';
-import { Divider, Menu } from 'antd';
+import { Modal, Menu } from 'antd';
 
 const Toolbox = () => {
+
+    const handleMenuItemClick = ({ item, key, keyPath, domEvent }) => {
+        console.log({ item, key, keyPath, domEvent });
+    }
+
     return (
         <div className="sticky-left-toolbox">
             <Menu
@@ -38,6 +43,7 @@ const Toolbox = () => {
                         icon: <FontColorsOutlined />,
                     }
                 ]}
+                onClick={({ item, key, keyPath, domEvent }) => handleMenuItemClick({ item, key, keyPath, domEvent })}
             />
             {/* <Divider /> */}
             <Menu
@@ -59,6 +65,14 @@ const Toolbox = () => {
                     }
                 ]}
             />
+
+            <div>
+            <Modal title="Basic Modal" open={true}>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+            </Modal>
+            </div>
         </div>
     )
 }

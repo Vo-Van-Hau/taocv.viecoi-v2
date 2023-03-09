@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.css';
 import { 
     Col, Row,
@@ -17,25 +17,70 @@ import Summary from '../Sections/Summary';
 
 const ResumeBody = (props) => {
 
+    const [groupPositionSection, setGroupPositionSection] = useState([
+        {
+            id: 1,
+            name: 'A'
+        }, {
+            id: 2,
+            name: 'B'
+        },
+    ]);
+    const [sectionComponents, setSectionComponents] = useState([
+        {
+            id: 1,
+            group_id: 1,
+            positionIndex: 0,
+            name: 'Experience',
+            sectionComponent: <Experience {...props}/>,
+        },{
+            id: 2,
+            group_id: 1,
+            positionIndex: 1,
+            name: 'Skills',
+            sectionComponent: <Skills {...props}/>,
+        },{
+            id: 3,
+            group_id: 2,
+            positionIndex: 0,
+            name: 'Education',
+            sectionComponent: <Education {...props}/>,
+        },{
+            id: 4,
+            group_id: 2,
+            positionIndex: 1,
+            name: 'Languages',
+            sectionComponent: <Languages {...props}/>,
+        },
+    ]);
+
     return (
         <div className="ResumePage-module_column">
             <Row gutter={16}>
                 <Col span={15}>            
                     <div className="ResumePage-module_columnContainer">
-                        <Experience {...props}/>
-                        <Education {...props}/>
-                        <Skills {...props}/>
-                        <FindMeOnline {...props}/>
-                        <Summary {...props}/>
+                        {
+                            sectionComponents.map((sectionItem, index) => {
+                                if(sectionItem && sectionItem.group_id === 1) {
+                                    return (<div key={sectionItem.id}>
+                                        {sectionItem.sectionComponent}
+                                    </div>)
+                                }   
+                            })
+                        }
                     </div>
                 </Col>
                 <Col span={9}>
                     <div className="ResumePage-module_columnContainer">
-                        <Languages {...props}/>
-                        <Projects {...props}/>
-                        <Certification {...props}/>
-                        <Awards {...props}/>
-                        <Volunteering {...props}/>
+                        {
+                            sectionComponents.map((sectionItem, index) => {
+                                if(sectionItem && sectionItem.group_id === 2) {
+                                    return (<div key={sectionItem.id}>
+                                        {sectionItem.sectionComponent}
+                                    </div>)
+                                }   
+                            })
+                        }
                     </div>
                 </Col>
             </Row>
