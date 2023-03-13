@@ -1,16 +1,21 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { 
     AppstoreAddOutlined, FormOutlined, BlockOutlined, FontColorsOutlined,
     ShareAltOutlined, DownloadOutlined 
 } from '@ant-design/icons';
 import { Modal, Menu, Col, Divider, Row } from 'antd';
 
+import { CoreContext } from '../Contexts/CoreContext';
 import RearrangeSections from './RearrangeSections';
 
-const Toolbox = () => {
+const Toolbox = (props) => {
+
+    const { data, toggleRearrangeSectionsToolBox } = useContext(CoreContext); 
 
     const handleMenuItemClick = ({ item, key, keyPath, domEvent }) => {
-        console.log({ item, key, keyPath, domEvent });
+        if(key == 2) {
+            toggleRearrangeSectionsToolBox(true);
+        }
     }
 
     return (
@@ -26,12 +31,12 @@ const Toolbox = () => {
                 items={[
                     {
                         label: 'Add section',
-                        key: 2,
+                        key: 1,
                         icon: <FormOutlined />,
                     },
                     {
                         label: 'Rearrange Sections',
-                        key: 1,
+                        key: 2,
                         icon: <AppstoreAddOutlined />,
                     },
                     {
