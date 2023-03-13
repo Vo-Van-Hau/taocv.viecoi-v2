@@ -3,7 +3,9 @@ import {
     AppstoreAddOutlined, FormOutlined, BlockOutlined, FontColorsOutlined,
     ShareAltOutlined, DownloadOutlined 
 } from '@ant-design/icons';
-import { Modal, Menu } from 'antd';
+import { Modal, Menu, Col, Divider, Row } from 'antd';
+
+import RearrangeSections from './RearrangeSections';
 
 const Toolbox = () => {
 
@@ -67,11 +69,7 @@ const Toolbox = () => {
             />
 
             <div>
-            <Modal title="Basic Modal" open={true}>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-            </Modal>
+                <RearrangeSections />
             </div>
         </div>
     )
