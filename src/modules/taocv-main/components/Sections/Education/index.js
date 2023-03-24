@@ -1,10 +1,35 @@
+import { useState, useEffect, useContext } from 'react';
 import { 
     Input, Space, DatePicker,
 } from 'antd';
+import { CoreContext } from '../../Contexts/CoreContext';
+import MoveableItem from './components/MoveableItem';
 
 const { RangePicker } = DatePicker;
 
-const Education = () => {
+const Education = (props) => {
+
+    const { data } = useContext(CoreContext); 
+    const { YourCV } = data;
+    const { seekers_qualifications } = YourCV;
+
+    const [moveableItemObject, setMoveableItemObject] = useState({
+        id: 0,
+        resume_id: 1,
+        qualification: {
+            id: 0,
+            name: ''
+        },
+        specialization_name: '',
+        year_of_pass: 2020,
+        month_of_pass: 8,
+        year_of_end: 2023,
+        month_of_year: 1,
+        institute: '',
+        is_now: 1,
+        order: 1,
+    });
+
     return (
         <div id="EducationSection-0" className="EducationSection" style={{marginBottom: 14}}>
             <Space direction="vertical" size="small" style={{ display: 'flex' }}>
@@ -29,63 +54,17 @@ const Education = () => {
                     </div>
                 </div>
                 <div className="ResumeSection-module_moveableItems">
-                    <div className="resume-item-holder line-item editable">
-                        <div>
-                            <div className="item-object">
-                                <div className="inner">
-                                    <div>
-                                        <Space direction="vertical" size={0} style={{ display: 'flex' }}>
-                                            <div className="work-container">
-                                                <div>
-                                                    <Input 
-                                                        placeholder="Degree and Field of Study" 
-                                                        bordered={false} 
-                                                        style={{
-                                                            paddingLeft: 0, paddingRight: 0, 
-                                                            borderRadius: 0,
-                                                            fontSize: 18,
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="editable-field-wrapper relative">
-                                                <div className="item-workplace">
-                                                    <Input 
-                                                        placeholder="School or University" 
-                                                        bordered={false} 
-                                                        style={{
-                                                            paddingLeft: 0, paddingRight: 0, 
-                                                            borderRadius: 0,
-                                                            fontSize: 14,
-                                                            color: 'rgb(30, 144, 255)'
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="">
-                                                <div>
-                                                    <Space size="large">
-                                                        <div>
-                                                            <RangePicker  
-                                                                bordered={false} 
-                                                                size={'small'}
-                                                                placeholder={['Start date', 'End date']}
-                                                                picker='month'
-                                                                style={{
-                                                                    padding: 0,
-                                                                    fontSize: 12,
-                                                                }}
-                                                            />
-                                                        </div>
-                                                    </Space>
-                                                </div>
-                                            </div>
-                                        </Space>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {
+                        seekers_qualifications.map((seekers_qualification, index) => {
+                            return (<MoveableItem 
+                                    {...props} 
+                                    moveableItem={{...seekers_qualification, index}}
+                                    moveableItems={seekers_qualifications}
+                                    moveableItemObject={moveableItemObject}
+                                    key={seekers_qualification.id}
+                                />)
+                        })
+                    }
                 </div>
             </Space>
         </div>

@@ -1,4 +1,6 @@
 import { useRef } from 'react';
+import moment from 'moment';
+import dayjs from 'dayjs';
 import { 
     Input, Space, List, DatePicker, Popover, Divider,
 } from 'antd';
@@ -12,7 +14,7 @@ const { RangePicker } = DatePicker;
 
 const MoveableItem = (props) => {
 
-    const { moveableItem, moveableItems, setMoveableItems, moveableItemObject } = props;
+    const { moveableItem, moveableItems, moveableItemObject } = props;
 
     /**
      * 
@@ -23,7 +25,6 @@ const MoveableItem = (props) => {
         updateItem.skill = event.target.value || '';
         let newMoveableItems = [...moveableItems];
         newMoveableItems.splice(index, 1, updateItem);
-        setMoveableItems(newMoveableItems);
     }
 
     return (
@@ -47,7 +48,7 @@ const MoveableItem = (props) => {
                                         <div className="work-container">
                                             <div>
                                                 <Input 
-                                                    placeholder="Title" 
+                                                    placeholder="Tên Công việc" 
                                                     bordered={false} 
                                                     style={{
                                                         paddingLeft: 0, paddingRight: 0, 
@@ -55,14 +56,14 @@ const MoveableItem = (props) => {
                                                         fontSize: 18,
                                                     }}
                                                     onChange={(event) => handleInputRef(event)}
-                                                    value={moveableItem.skill}
+                                                    defaultValue={moveableItem.skill || ''}
                                                 />
                                             </div>
                                         </div>
                                         <div className="editable-field-wrapper relative">
                                             <div className="item-workplace ExperienceItemDefault-module_companyName">
                                                 <Input 
-                                                    placeholder="Company Name" 
+                                                    placeholder="Tên Công Ty" 
                                                     bordered={false} 
                                                     style={{
                                                         paddingLeft: 0, paddingRight: 0, 
@@ -71,6 +72,7 @@ const MoveableItem = (props) => {
                                                         color: 'rgb(30, 144, 255)',
                                                         fontWeight: 500,
                                                     }}
+                                                    defaultValue={moveableItem.ten_congty || ''}
                                                 />
                                             </div>
                                         </div>
@@ -81,12 +83,14 @@ const MoveableItem = (props) => {
                                                         <RangePicker  
                                                             bordered={false} 
                                                             size={'small'}
-                                                            placeholder={['Start date', 'End date']}
+                                                            placeholder={['Thời gian bắt đầu', 'Thời gian kết thúc']}
                                                             picker='month'
                                                             style={{
                                                                 padding: 0,
                                                                 fontSize: 12,
                                                             }}
+                                                            format={'MM-YYYY'}
+                                                            defaultValue={[dayjs('2022-10-01', 'YYYY/MM/DD'), dayjs('2023-03-01', 'YYYY/MM/DD')]}
                                                         />
                                                     </div>
                                                     <div>

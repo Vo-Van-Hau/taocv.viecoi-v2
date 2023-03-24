@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+
 import './index.css';
 import { 
     Input, Space, Col, Row 
@@ -6,7 +8,13 @@ import {
     PhoneOutlined, MailOutlined, LinkOutlined, EnvironmentOutlined 
 } from '@ant-design/icons';
 
-const ResumeHeader = () => {
+import { CoreContext } from '../Contexts/CoreContext';
+
+const ResumeHeader = (props) => {
+
+    const { data } = useContext(CoreContext); 
+    const { YourCV } = data;
+    const { users, jobseeker_details, resumes } = YourCV;
 
     return (
         <div>
@@ -31,6 +39,7 @@ const ResumeHeader = () => {
                                     textTransform: 'uppercase',
                                     padding: 0,
                                 }}
+                                defaultValue={users.name || ''}
                             />
                         </div>
                         <div className="resume-header-title-placeholder" style={{marginBottom: 8}}> 
@@ -45,6 +54,7 @@ const ResumeHeader = () => {
                                     padding: 0,
                                     color: 'rgb(30, 144, 255)',
                                 }}
+                                defaultValue={resumes.resume_title || ''}
                             />
                         </div>
                         <div>
@@ -68,6 +78,7 @@ const ResumeHeader = () => {
                                                 padding: 0,
                                                 color: 'rgb(30, 144, 255)',
                                             }}
+                                            defaultValue={jobseeker_details.phone || ''}
                                         />
                                     </Col>
                                     <Col span="24">
@@ -82,6 +93,7 @@ const ResumeHeader = () => {
                                                 padding: 0,
                                                 color: 'rgb(30, 144, 255)',
                                             }}
+                                            defaultValue={users.email || ''}
                                         />
                                     </Col>
                                     <Col span="24">
@@ -110,6 +122,7 @@ const ResumeHeader = () => {
                                                 padding: 0,
                                                 color: 'rgb(30, 144, 255)',
                                             }}
+                                            defaultValue={jobseeker_details.address || ''}
                                         />
                                     </Col>
                                 </Space>

@@ -42,7 +42,7 @@ const ResumeBody = (props) => {
     return (
         <div className="ResumePage-module_column">
             <Row gutter={16}>
-                <Col span={12}>            
+                <Col span={16}>            
                     <div className="ResumePage-module_columnContainer">
                         {
                             groupPositionSection.map(columnGroup => {
@@ -62,7 +62,7 @@ const ResumeBody = (props) => {
                         }
                     </div>
                 </Col>
-                <Col span={12}>
+                <Col span={8}>
                     <div className="ResumePage-module_columnContainer">
                         {
                             groupPositionSection.map(columnGroup => {

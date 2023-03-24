@@ -49,7 +49,7 @@ const JobsRecommend = () => {
                                         },{
                                             title: 'Death Battle Assistant Editor - Contract',
                                             company_name: 'Rooster Teeth',
-                                            company_logo: 'https://viecoi.cdn.vccloud.vn/public/userdata/374437/1662693546193491.jpg',
+                                            company_logo: 'https://viecoi.vn/public/userdata/374437/1662693546193491.jpg',
                                             address: 'London, UK',
                                         },
                                     ]}

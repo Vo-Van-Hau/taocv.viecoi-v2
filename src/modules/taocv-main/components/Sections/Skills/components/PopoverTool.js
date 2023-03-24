@@ -9,7 +9,7 @@ import { CoreContext } from '../../../Contexts/CoreContext';
 
 const PopoverTool = (props) => {
 
-    const { data, setYourCVSkills } = useContext(CoreContext); 
+    const { data, setYourCVQualifications } = useContext(CoreContext); 
 
     const { moveableItem, moveableItems, moveableItemObject } = props;
 
@@ -26,7 +26,7 @@ const PopoverTool = (props) => {
                 ...moveableItemObject,
                 id: Math.floor(Math.random() * 1000000),
             });
-            setYourCVSkills(newMoveableItems);
+            setYourCVQualifications(newMoveableItems);
         } catch (errors) {
             console.log(errors);
         }
@@ -43,7 +43,7 @@ const PopoverTool = (props) => {
             if(moveableItems.length <= 1) return;
             let newMoveableItems = [...moveableItems];
             newMoveableItems.splice(moveableItem.index, 1);
-            setYourCVSkills(newMoveableItems);
+            setYourCVQualifications(newMoveableItems);
         } catch (errors) {
             console.log(errors);
         }
@@ -75,7 +75,7 @@ const PopoverTool = (props) => {
             newMoveableItems.splice(fromIndex, 1);
             newMoveableItems.splice(toIndex, 0, moveableItem);
             if(mutable) {
-                setYourCVSkills(newMoveableItems);
+                setYourCVQualifications(newMoveableItems);
             }
         } catch (errors) {
             console.log(errors);

@@ -1,15 +1,18 @@
-import { useState } from 'react';
-
+import { useState, useEffect, useContext } from 'react';
 import { 
     Input, Space,
 } from 'antd';
 import './index.css';
+import { CoreContext } from '../../Contexts/CoreContext';
 import MoveableItem from './components/MoveableItem';
 
 const Experience = (props) => {
 
+    const { data } = useContext(CoreContext); 
+    const { YourCV } = data;
+    const { skills } = YourCV;
+
     const [moveableItemObject, setMoveableItemObject] = useState({
-        id: 0,
         skill: '',
         ten_congty: '',
         cong_viec: '',
@@ -21,19 +24,10 @@ const Experience = (props) => {
         order: 0,
         level_id: 0,
     });
-    const [moveableItems, setMoveableItems] = useState([{
-        id: 0,
-        skill: '',
-        ten_congty: '',
-        cong_viec: '',
-        working_time_month_begin: '',
-        working_time_year_begin: '',
-        working_time_month_end: '',
-        working_time_year_end: '',
-        is_now: 0,
-        order: 0,
-        level_id: 0,
-    }]);
+
+    useEffect(() => {
+        
+    }, []);
 
     return (
         <div id="ExperienceSection-0" className="ExperienceSection" style={{marginBottom: 14}}>
@@ -60,14 +54,13 @@ const Experience = (props) => {
                 </div>
                 <div className="ResumeSection-module_moveableItems">
                     {
-                        moveableItems.map((moveableItem, index) => {
+                        skills.map((skill, index) => {
                             return (<MoveableItem 
                                     {...props} 
-                                    moveableItem={{...moveableItem, index}}
-                                    moveableItems={moveableItems}
+                                    moveableItem={{...skill, index}}
+                                    moveableItems={skills}
                                     moveableItemObject={moveableItemObject}
-                                    setMoveableItems={setMoveableItems}
-                                    key={index}
+                                    key={skill.id}
                                 />)
                         })
                     }

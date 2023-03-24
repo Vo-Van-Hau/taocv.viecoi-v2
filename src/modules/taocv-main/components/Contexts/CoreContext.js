@@ -2,7 +2,8 @@ import React, { createContext, useReducer } from 'react';
 import { createSearchParams } from 'react-router-dom';
 import { initialState, CoreReducer } from '../Reducers/CoreReducer';
 import { 
-    SET_REARRANGE_SECTIONS, SET_GROUP_POSITION_SECTION, TOGGLE_REARRANGE_SECTIONS_TOOLBOX 
+    SET_REARRANGE_SECTIONS, SET_GROUP_POSITION_SECTION, TOGGLE_REARRANGE_SECTIONS_TOOLBOX,
+    SET_YOUR_CV_SKILLS, SET_YOUR_CV_QUALIFICATIONS,
 } from '../Dispatch/type';
 
 export const CoreContext = createContext();
@@ -47,8 +48,29 @@ const CoreContextProvider = ({ children, axios, history }) => {
         dispatch({ type: TOGGLE_REARRANGE_SECTIONS_TOOLBOX, payload: isShow});
     }
 
+    /**
+     * @author: <it-team@wacontre.com>
+     * @todo
+     * @param: {Array} payload
+     * @return
+     */
+    const setYourCVSkills = (payload) => {
+        dispatch({ type: SET_YOUR_CV_SKILLS, payload: payload});
+    }
+
+    /**
+     * @author: <it-team@wacontre.com>
+     * @todo
+     * @param: {Array} payload
+     * @return
+     */
+    const setYourCVQualifications = (payload) => {
+        dispatch({ type: SET_YOUR_CV_QUALIFICATIONS, payload: payload});
+    }
+
     const todoContextData = {
-        data, dispatch, setRearrangeSections, setGroupPositionSection, toggleRearrangeSectionsToolBox
+        data, dispatch, setRearrangeSections, setGroupPositionSection, toggleRearrangeSectionsToolBox,
+        setYourCVSkills, setYourCVQualifications,
     };
 
     return (
